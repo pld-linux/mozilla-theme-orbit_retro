@@ -2,17 +2,17 @@ Summary:	The best looking theme for Mozilla - retro style
 Summary(pl):	Najlepszy motyw dla Mozilli jaki kiedykolwiek powsta³ - styl retro
 Name:		mozilla-theme-orbit_retro
 %define		_realname	orbit_r
-%define	fver	1_3-20030519b
-Version:	0.0.7.1
-Release:	1
+%define	fver	1_4-20030830
+Version:	0.0.7.2
+Release:	2
 License:	GPL
 Group:		X11/Applications/Networking
 Source0:	http://downloads.uk1.mozdev.org/rsync/themes/themes/%{_realname}-%{fver}.jar
-# Source0-md5:	2892308f9786603b9f2d0a21a3de1ec6
+# Source0-md5:	889d93a3afc640563acdc2b4236373c7
 Source1:	%{_realname}-installed-chrome.txt
 URL:		http://themes.mozdev.org/themes/retro.html
 Requires(post,postun):	textutils
-Requires:	mozilla >= 1.2.1
+Requires:	mozilla = 5:1.5
 BuildArch:	noarch
 BuildRoot:	%{tmpdir}/%{_realname}-%{version}-root-%(id -u -n)
 
@@ -25,12 +25,20 @@ The best looking theme for Mozilla - retro style.
 Najlepszy motyw dla Mozilli jaki kiedykolwiek powsta³ - styl retro.
 
 %prep
+%setup -c -n %{name}
+
+%build
+
+perl -pi -e 's/(skinVersion=)"1\.[0-9]"/$1"1.5"/' contents.rdf
+find -name "*.css" | xargs perl -pi -e 's/:-moz-/::-moz-/'
 
 %install
+
 rm -rf $RPM_BUILD_ROOT
 install -d $RPM_BUILD_ROOT%{_chromedir}
 
-install %{SOURCE0} $RPM_BUILD_ROOT%{_chromedir}/%{_realname}.jar
+zip -r $RPM_BUILD_ROOT%{_chromedir}/%{_realname}.jar *
+
 install %{SOURCE1} $RPM_BUILD_ROOT%{_chromedir}
 
 %clean
