@@ -10,8 +10,9 @@ Group:		X11/Applications/Networking
 Source0:	http://www.alfordot.com/e/p/cdn/orbit3/%{_realname}-%{_snap}.jar
 Source1:	%{_realname}-installed-chrome.txt
 URL:		http://themes.mozdev.org/skins/retro.html
-BuildArch:	noarch
+Requires(post,postun):	textutils
 Requires:	mozilla >= 1.0-7
+BuildArch:	noarch
 BuildRoot:	%{tmpdir}/%{_realname}-%{version}-root-%(id -u -n)
 
 %define		_chromedir	%{_libdir}/mozilla/chrome
@@ -33,14 +34,16 @@ install %{SOURCE0} %{SOURCE1} $RPM_BUILD_ROOT%{_chromedir}
 mv -f $RPM_BUILD_ROOT%{_chromedir}/%{_realname}-%{_snap}.jar \
 	$RPM_BUILD_ROOT%{_chromedir}/%{_realname}.jar
 
-%post 
+%clean
+rm -rf $RPM_BUILD_ROOT
+
+%post
+umask 022
 cat %{_chromedir}/*-installed-chrome.txt >%{_chromedir}/installed-chrome.txt
 
 %postun
+umask 022
 cat %{_chromedir}/*-installed-chrome.txt >%{_chromedir}/installed-chrome.txt
-
-%clean 
-rm -rf $RPM_BUILD_ROOT
 
 %files
 %defattr(644,root,root,755)
