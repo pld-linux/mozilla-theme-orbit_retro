@@ -1,0 +1,8 @@
+skin,install,url,jar:resource:/chrome/orbit_r.jar!/
+skin,install,url,jar:resource:/chrome/orbit_r.jar!/global/
+skin,install,url,jar:resource:/chrome/orbit_r.jar!/communicator/
+skin,install,url,jar:resource:/chrome/orbit_r.jar!/editor/
+skin,install,url,jar:resource:/chrome/orbit_r.jar!/messenger/
+skin,install,url,jar:resource:/chrome/orbit_r.jar!/navigator/
+skin,install,url,jar:resource:/chrome/orbit_r.jar!/chatzilla/
+skin,install,url,jar:resource:/chrome/orbit_r.jar!/aim/
