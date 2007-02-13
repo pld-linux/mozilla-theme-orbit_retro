@@ -1,5 +1,5 @@
 Summary:	The best looking theme for Mozilla - retro style
-Summary(pl.UTF-8):   Najlepszy motyw dla Mozilli jaki kiedykolwiek powstał - styl retro
+Summary(pl.UTF-8):	Najlepszy motyw dla Mozilli jaki kiedykolwiek powstał - styl retro
 Name:		mozilla-theme-orbit_retro
 %define		_realname	orbit_r
 %define	fver	1_4-20030830
